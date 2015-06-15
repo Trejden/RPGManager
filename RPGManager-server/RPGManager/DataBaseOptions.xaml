@@ -1,0 +1,14 @@
+﻿<Window x:Name="Opcja_Bazy_Danych" x:Class="RPGManager.DataBaseOptions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Opcje Bazy Danych" Height="265.699" Width="301">
+    <Grid Margin="0,0,2,2">
+        <Button x:Name="newDatabase" Content="Stworz Nową Bazę Danych(SQLServer)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="270" Click="create_Database"/>
+        <Button x:Name="loadDatabase" Content="Wczytaj Bazę Danych z pliku (SQLite)" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="270" Click="load_Database"/>
+        <Button x:Name="newDatabaseSQLite" Content="Stworz Nową Bazę Danych(SQLite)" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Width="270" Click="create_Database2"/>
+        <Button x:Name="connecttoSQLserver" Content="Polacz się z istniejącą Bazą Danych SQLServer" HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top" Width="270" Click="ConnectToDatabase"
+                />
+        <TextBox HorizontalAlignment="Left" Height="71" Margin="10,141,0,0" TextWrapping="Wrap" Text="Ostrzezenie: opcje 1 i 4 wymagają uruchomionej w tle usługi servera SQLServer jezeli nie posiadasz takiej uslugi użyj opcji 2 lub 3" VerticalAlignment="Top" Width="267"/>
+
+    </Grid>
+</Window>

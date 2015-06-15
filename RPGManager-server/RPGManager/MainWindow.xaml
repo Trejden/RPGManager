@@ -1,0 +1,39 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="RPGManager.MainWindow"
+        Title="RPGManagerServer" Height="648" Width="887" ResizeMode="CanResizeWithGrip" d:DataContext="{d:DesignData /SampleData/ResourcesSampleData.xaml}">
+    <Window.Resources>
+        <Storyboard x:Key="OnLoaded1"/>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded"/>
+    </Window.Triggers>
+    <Grid>
+        <Button x:Name="Start" Content="StartSession" HorizontalAlignment="Left" Height="24" Margin="788,324,0,0" VerticalAlignment="Top" Width="81" Click="Start_Button"/>
+        <Menu HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="879">
+            <MenuItem x:Name="BazaDanych" Header="Baza Danych" Height="21" Width="84" Click="dataBaseButton"/>
+            <MenuItem x:Name="EdycjaPostaci" Header="Edycja Postaci" Height="21" Width="82.5" Click="editCharacterbutton"/>
+            <MenuItem x:Name="Chatgrupowy" Header="Czat Grupowy" Height="23" Width="82" Click="group_chat"/>
+            <MenuItem x:Name="PrivChat" Header="Czat Prywatny" Height="26" Width="84" Click="private_chat" RenderTransformOrigin="0.517,0.11"/>
+        </Menu>
+        <ListView x:Name="ListaGraczy" HorizontalAlignment="Left" Height="297" Margin="-1,22,0,0" VerticalAlignment="Top" Width="207" Background="#FFC9C4C4" BorderBrush="Black" SelectionChanged="ListaGraczy_SelectionChanged"/>
+        <TextBox x:Name="KartaPostaci" HorizontalAlignment="Left" Height="297" Margin="209,22,0,0" TextWrapping="Wrap" Text="Karta postaci:" VerticalAlignment="Top" Width="398" Background="#FFDEDEDE" BorderBrush="Black" IsReadOnly="True"/>
+        <RichTextBox x:Name="Notatki" HorizontalAlignment="Left" Height="297" Margin="612,22,0,0" VerticalAlignment="Top" Width="257" Background="#FFFFFDC9" BorderBrush="Black" FontStyle="Italic" AcceptsTab="True">
+            <RichTextBox.ContextMenu>
+                <ContextMenu AllowDrop="True"/>
+            </RichTextBox.ContextMenu>
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="RichTextBox"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <ListView x:Name="UczestnicyCzatu" HorizontalAlignment="Left" Height="294" Margin="-1,324,0,0" VerticalAlignment="Top" Width="207" Background="#FFC9C4C4" BorderBrush="Black"/>
+        <TextBox HorizontalAlignment="Left" Height="173" Margin="211,324,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="396" Background="#FFDEDEDE" IsReadOnly="True"/>
+        <InkCanvas HorizontalAlignment="Left" Height="255" Margin="612,353,0,0" VerticalAlignment="Top" Width="257"/>
+        <TextBox x:Name="ChatOutput" HorizontalAlignment="Left" Height="173" Margin="211,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="396" Background="#FFDEDEDE" IsReadOnly="True"/>
+        <TextBox x:Name="ChatInput" HorizontalAlignment="Left" Height="115" Margin="211,502,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="396" Background="#FFDEDEDE" IsReadOnly="True"/>
+
+    </Grid>
+</Window>

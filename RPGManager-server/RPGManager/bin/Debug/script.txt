@@ -1,0 +1,1286 @@
+CREATE 
+  TABLE Bohater 
+  ( 
+    idPostaci                       INTEGER NOT NULL , 
+    "Punkty przeznaczenia"          INTEGER , 
+    idKlasy                         INTEGER NOT NULL , 
+    "Punkty doœwiadczenia aktualne" INTEGER , 
+    "Punkty doœwiadczenia ogó³em"   INTEGER , 
+    idCharakteru                    INTEGER NOT NULL , 
+    "Punkty ob³êdu"                 INTEGER , 
+    idOb³êdu                        INTEGER , 
+    "Czas do wskrzeszenia"          DATETIME , 
+    CONSTRAINT Bohater_PK PRIMARY KEY CLUSTERED (idPostaci) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE Broñ 
+  ( 
+    idBroni   INTEGER NOT NULL , 
+    Obra¿enia INTEGER , 
+    Typ NVARCHAR (60) , 
+    "Jakoœæ wykonania" NVARCHAR (60) , 
+    CONSTRAINT Broñ_PK PRIMARY KEY CLUSTERED (idBroni) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE Charakter 
+  ( 
+    idCharakteru INTEGER NOT NULL , 
+    Charakter NVARCHAR (60) , 
+    CONSTRAINT Charakter_PK PRIMARY KEY CLUSTERED (idCharakteru) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE Czar 
+  ( 
+    idCzaru INTEGER NOT NULL , 
+    Nazwa NVARCHAR (60) , 
+    "Punkty magii" INTEGER , 
+    Sk³adniki NVARCHAR (60) , 
+    Opis NVARCHAR (60) , 
+    CONSTRAINT Czar_PK PRIMARY KEY CLUSTERED (idCzaru) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE Ekwipunek 
+  ( 
+    idEkwipunku        INTEGER NOT NULL , 
+    "idTypu ekwipunku" INTEGER NOT NULL , 
+    idPostaci          INTEGER NOT NULL , 
+    Nazwa NVARCHAR (60) , 
+    Wartoœæ INTEGER , 
+    "Czy u¿ywany" BIT , 
+    Iloœæ INTEGER , 
+    CONSTRAINT Ekwipunek_PK PRIMARY KEY CLUSTERED (idEkwipunku) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE Klasa 
+  ( 
+    idKlasy INTEGER NOT NULL , 
+    Klasa NVARCHAR (60) , 
+    "idKlasy wyjsciowej" INTEGER, 
+    idZdolnoœci          INTEGER, 
+    idUmiejêtnoœci       INTEGER, 
+    idStatystyk          INTEGER NOT NULL , 
+    idCzaru              INTEGER, 
+    CONSTRAINT Klasa_PK PRIMARY KEY CLUSTERED (idKlasy) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE NPC 
+  ( 
+    idPostaci    INTEGER NOT NULL , 
+    idKlasy      INTEGER NOT NULL , 
+    idCharakteru INTEGER NOT NULL , 
+    CONSTRAINT NPC_PK PRIMARY KEY CLUSTERED (idPostaci) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE Ob³êd 
+  ( 
+    idOb³êdu INTEGER NOT NULL , 
+    Ob³êd NVARCHAR (60), 
+    CONSTRAINT Ob³êd_PK PRIMARY KEY CLUSTERED (idOb³êdu) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE Pancerz 
+  ( 
+    idPancerza           INTEGER NOT NULL , 
+    "Ochrona korpus"     INTEGER , 
+    "Ochrona G³owa"      INTEGER , 
+    "Ochrona lewa rêka"  INTEGER , 
+    "Ochrona prawa rêka" INTEGER , 
+    "Ochrona lewa noga"  INTEGER , 
+    "Ochrona prawa noga" INTEGER , 
+    idStatystyk          INTEGER, 
+    CONSTRAINT Pancerz_PK PRIMARY KEY CLUSTERED (idPancerza) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE Postaæ 
+  ( 
+    idPostaci       INTEGER NOT NULL , 
+    "idTyp postaci" INTEGER NOT NULL , 
+    Imiê NVARCHAR (60) , 
+    idRasy                          INTEGER NOT NULL , 
+    "Punkty ¿ycia"                  INTEGER , 
+    idZdolnoœci                     INTEGER, 
+    idUmiejêtnoœci                  INTEGER, 
+    "Punkty doœwiadczenia aktualne" INTEGER , 
+    "Punkty doœwiadczenia ogó³em"   INTEGER , 
+    idStatystyk                     INTEGER NOT NULL , 
+    "Punkty magii"                  INTEGER , 
+    idCzaru                         INTEGER, 
+    CONSTRAINT Postaæ_PK PRIMARY KEY CLUSTERED (idPostaci) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+CREATE NONCLUSTERED INDEX 
+Postaæ__IDX ON Postaæ 
+( 
+  "Punkty doœwiadczenia ogó³em" 
+) 
+go 
+ 
+CREATE 
+  TABLE Rasa 
+  ( 
+    idRasy INTEGER NOT NULL , 
+    Rasa NVARCHAR (60) , 
+    CONSTRAINT Rasa_PK PRIMARY KEY CLUSTERED (idRasy) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE Rozwiniêcia 
+  ( 
+    idRozwiniêcia INTEGER NOT NULL , 
+    idPostaci     INTEGER NOT NULL , 
+    idStatystyk   INTEGER NOT NULL , 
+    CONSTRAINT Rozwiniêcia_PK PRIMARY KEY CLUSTERED (idRozwiniêcia) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE Statystyki 
+  ( 
+    idStatystyk                INTEGER NOT NULL , 
+    "Walka wrêcz"              INTEGER , 
+    "Umiejêtnoœci strzeleckie" INTEGER , 
+    Si³a                       INTEGER , 
+    Wytrzyma³oœæ               INTEGER , 
+    ¯ywotnoœæ                  INTEGER , 
+    Inicjatywa                 INTEGER , 
+    Ataki                      INTEGER , 
+    Zrêcznoœæ                  INTEGER , 
+    "Cechy przywódcze"         INTEGER , 
+    Inteligencja               INTEGER , 
+    Opanowanie                 INTEGER , 
+    "Si³a woli"                INTEGER , 
+    Og³ada                     INTEGER , 
+    CONSTRAINT Statystyki_PK PRIMARY KEY CLUSTERED (idStatystyk) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE "Typ ekwipunku" 
+  ( 
+    "idTypu ekwipunku" INTEGER NOT NULL , 
+    Typ NVARCHAR (60) , 
+    CONSTRAINT "Typ ekwipunku_PK" PRIMARY KEY CLUSTERED ("idTypu ekwipunku") 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE "Typ postaci" 
+  ( 
+    idTypu INTEGER NOT NULL , 
+    Typ NVARCHAR (20) NOT NULL , 
+    CONSTRAINT "Typ postaci_PK" PRIMARY KEY CLUSTERED (idTypu) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE Umiejêtnoœci 
+  ( 
+    idUmiejêtnoœci INTEGER NOT NULL , 
+    Umiejêtnoœæ NVARCHAR (60), 
+    idKlasy   INTEGER, 
+    idPostaci INTEGER, 
+    CONSTRAINT Umiejêtnoœci_PK PRIMARY KEY CLUSTERED (idUmiejêtnoœci) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE Wróg 
+  ( 
+    idPostaci              INTEGER NOT NULL , 
+    "Punkty doœwiadczenia" INTEGER , 
+    CONSTRAINT Wróg_PK PRIMARY KEY CLUSTERED (idPostaci) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+CREATE 
+  TABLE Zdolnoœci 
+  ( 
+    idZdolnoœci INTEGER NOT NULL , 
+    Zdolnoœæ NVARCHAR (60) , 
+    idKlasy   INTEGER, 
+    idPostaci INTEGER, 
+    CONSTRAINT Zdolnoœci_PK PRIMARY KEY CLUSTERED (idZdolnoœci) 
+WITH 
+  ( 
+    ALLOW_PAGE_LOCKS = ON , 
+    ALLOW_ROW_LOCKS  = ON 
+  ) 
+  ON "default" 
+  ) 
+  ON "default" 
+GO 
+ 
+ALTER TABLE Bohater 
+ADD CONSTRAINT Bohater_Charakter_FK FOREIGN KEY 
+( 
+idCharakteru 
+) 
+REFERENCES Charakter 
+( 
+idCharakteru 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Bohater 
+ADD CONSTRAINT Bohater_Klasa_FK FOREIGN KEY 
+( 
+idKlasy 
+) 
+REFERENCES Klasa 
+( 
+idKlasy 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Bohater 
+ADD CONSTRAINT Bohater_Ob³êd_FK FOREIGN KEY 
+( 
+idOb³êdu 
+) 
+REFERENCES Ob³êd 
+( 
+idOb³êdu 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Bohater 
+ADD CONSTRAINT Bohater_Postaæ_FK FOREIGN KEY 
+( 
+idPostaci 
+) 
+REFERENCES Postaæ 
+( 
+idPostaci 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Broñ 
+ADD CONSTRAINT Broñ_Ekwipunek_FK FOREIGN KEY 
+( 
+idBroni 
+) 
+REFERENCES Ekwipunek 
+( 
+idEkwipunku 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Ekwipunek 
+ADD CONSTRAINT Ekwipunek_Postaæ_FK FOREIGN KEY 
+( 
+idPostaci 
+) 
+REFERENCES Postaæ 
+( 
+idPostaci 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Ekwipunek 
+ADD CONSTRAINT "Ekwipunek_Typ ekwipunku_FK" FOREIGN KEY 
+( "idTypu ekwipunku" 
+) 
+REFERENCES "Typ ekwipunku" 
+( "idTypu ekwipunku" 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Klasa 
+ADD CONSTRAINT Klasa_Czar_FK FOREIGN KEY 
+( 
+idCzaru 
+) 
+REFERENCES Czar 
+( 
+idCzaru 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Klasa 
+ADD CONSTRAINT Klasa_Klasa_FK FOREIGN KEY 
+( "idKlasy wyjsciowej" 
+) 
+REFERENCES Klasa 
+( 
+idKlasy 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Klasa 
+ADD CONSTRAINT Klasa_Statystyki_FK FOREIGN KEY 
+( 
+idStatystyk 
+) 
+REFERENCES Statystyki 
+( 
+idStatystyk 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Klasa 
+ADD CONSTRAINT Klasa_Umiejêtnoœci_FK FOREIGN KEY 
+( 
+idUmiejêtnoœci 
+) 
+REFERENCES Umiejêtnoœci 
+( 
+idUmiejêtnoœci 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Klasa 
+ADD CONSTRAINT Klasa_Zdolnoœci_FK FOREIGN KEY 
+( 
+idZdolnoœci 
+) 
+REFERENCES Zdolnoœci 
+( 
+idZdolnoœci 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE NPC 
+ADD CONSTRAINT NPC_Charakter_FK FOREIGN KEY 
+( 
+idCharakteru 
+) 
+REFERENCES Charakter 
+( 
+idCharakteru 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE NPC 
+ADD CONSTRAINT NPC_Klasa_FK FOREIGN KEY 
+( 
+idKlasy 
+) 
+REFERENCES Klasa 
+( 
+idKlasy 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE NPC 
+ADD CONSTRAINT NPC_Postaæ_FK FOREIGN KEY 
+( 
+idPostaci 
+) 
+REFERENCES Postaæ 
+( 
+idPostaci 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Pancerz 
+ADD CONSTRAINT Pancerz_Ekwipunek_FK FOREIGN KEY 
+( 
+idPancerza 
+) 
+REFERENCES Ekwipunek 
+( 
+idEkwipunku 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Pancerz 
+ADD CONSTRAINT Pancerz_Statystyki_FK FOREIGN KEY 
+( 
+idStatystyk 
+) 
+REFERENCES Statystyki 
+( 
+idStatystyk 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Postaæ 
+ADD CONSTRAINT Postaæ_Charakter_FKv1 FOREIGN KEY 
+( 
+idCzaru 
+) 
+REFERENCES Czar 
+( 
+idCzaru 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Postaæ 
+ADD CONSTRAINT Postaæ_Rasa_FK FOREIGN KEY 
+( 
+idRasy 
+) 
+REFERENCES Rasa 
+( 
+idRasy 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Postaæ 
+ADD CONSTRAINT Postaæ_Statystyki_FK FOREIGN KEY 
+( 
+idStatystyk 
+) 
+REFERENCES Statystyki 
+( 
+idStatystyk 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Postaæ 
+ADD CONSTRAINT "Postaæ_Typ postaci_FK" FOREIGN KEY 
+( "idTyp postaci" 
+) 
+REFERENCES "Typ postaci" 
+( 
+idTypu 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Postaæ 
+ADD CONSTRAINT Postaæ_Umiejêtnoœci_FK FOREIGN KEY 
+( 
+idUmiejêtnoœci 
+) 
+REFERENCES Umiejêtnoœci 
+( 
+idUmiejêtnoœci 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Postaæ 
+ADD CONSTRAINT Postaæ_Zdolnoœci_FK FOREIGN KEY 
+( 
+idZdolnoœci 
+) 
+REFERENCES Zdolnoœci 
+( 
+idZdolnoœci 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Rozwiniêcia 
+ADD CONSTRAINT Rozwiniêcia_Statystyki_FK FOREIGN KEY 
+( 
+idStatystyk 
+) 
+REFERENCES Statystyki 
+( 
+idStatystyk 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Rozwiniêcia 
+ADD CONSTRAINT TABLE_6_Postaæ_FK FOREIGN KEY 
+( 
+idPostaci 
+) 
+REFERENCES Postaæ 
+( 
+idPostaci 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Umiejêtnoœci 
+ADD CONSTRAINT Umiejêtnoœci_Klasa_FK FOREIGN KEY 
+( 
+idKlasy 
+) 
+REFERENCES Klasa 
+( 
+idKlasy 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Umiejêtnoœci 
+ADD CONSTRAINT Umiejêtnoœci_Postaæ_FK FOREIGN KEY 
+( 
+idPostaci 
+) 
+REFERENCES Postaæ 
+( 
+idPostaci 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Wróg 
+ADD CONSTRAINT Wróg_Postaæ_FK FOREIGN KEY 
+( 
+idPostaci 
+) 
+REFERENCES Postaæ 
+( 
+idPostaci 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Zdolnoœci 
+ADD CONSTRAINT Zdolnoœci_Klasa_FK FOREIGN KEY 
+( 
+idKlasy 
+) 
+REFERENCES Klasa 
+( 
+idKlasy 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+ALTER TABLE Zdolnoœci 
+ADD CONSTRAINT Zdolnoœci_Postaæ_FK FOREIGN KEY 
+( 
+idPostaci 
+) 
+REFERENCES Postaæ 
+( 
+idPostaci 
+) 
+ON 
+DELETE 
+  NO ACTION ON 
+UPDATE NO ACTION 
+GO 
+ 
+CREATE VIEW "Czary postaci"  AS  
+SELECT 
+  Postaæ.Imiê, 
+  Postaæ.[Punkty magii] AS [Posiadane punkty magii], 
+  Czar.Nazwa, 
+  Czar.[Punkty magii] AS [Potrzebne punkty magii], 
+  Czar.Sk³adniki, 
+  Czar.Opis, 
+  Postaæ.idPostaci 
+FROM 
+  Postaæ 
+INNER JOIN Czar 
+ON 
+  Czar.idCzaru = Postaæ.idCzaru  
+GO 
+ 
+ 
+ 
+ 
+CREATE VIEW "Dostêpne Bronie"  AS  
+SELECT 
+  Postaæ.Imiê, 
+  Ekwipunek.Nazwa, 
+  Broñ.Obra¿enia, 
+  Broñ.Typ, 
+  Broñ.[Jakoœæ wykonania], 
+  Ekwipunek.Wartoœæ, 
+  Ekwipunek.[Czy u¿ywany], 
+  Postaæ.idPostaci 
+FROM 
+  Postaæ 
+INNER JOIN Ekwipunek 
+ON 
+  Postaæ.idPostaci = Ekwipunek.idPostaci 
+INNER JOIN [Typ ekwipunku] 
+ON 
+  [Typ ekwipunku].[idTypu ekwipunku] = Ekwipunek.[idTypu ekwipunku] 
+INNER JOIN Broñ 
+ON 
+  Ekwipunek.idEkwipunku = Broñ.idBroni 
+WHERE 
+  [Typ ekwipunku].Typ LIKE 'Broñ'  
+GO 
+ 
+ 
+ 
+ 
+CREATE VIEW "Dostêpne zdolnoœci i umiejêtnoœci"  AS  
+SELECT 
+  Postaæ.Imiê, 
+  Umiejêtnoœci.Umiejêtnoœæ, 
+  Zdolnoœci.Zdolnoœæ, 
+  Postaæ.idPostaci 
+FROM 
+  Klasa 
+JOIN Umiejêtnoœci 
+ON 
+  Klasa.idKlasy = Umiejêtnoœci.idUmiejêtnoœci 
+JOIN Zdolnoœci 
+ON 
+  Zdolnoœci.idKlasy = Klasa.idKlasy 
+INNER JOIN Bohater 
+ON 
+  Klasa.idKlasy = Bohater.idKlasy 
+INNER JOIN Postaæ 
+ON 
+  Postaæ.idPostaci = Bohater.idPostaci 
+WHERE 
+  ( 
+    Umiejêtnoœci.Umiejêtnoœæ NOT IN 
+    ( 
+      SELECT 
+        Umiejêtnoœci.Umiejêtnoœæ 
+      FROM 
+        Postaæ 
+      JOIN Bohater 
+      ON 
+        Postaæ.idPostaci = Bohater.idPostaci 
+      JOIN Umiejêtnoœci 
+      ON 
+        Umiejêtnoœci.idPostaci = Postaæ.idPostaci 
+    ) 
+  ) 
+OR 
+  ( 
+    Zdolnoœci.Zdolnoœæ NOT IN 
+    ( 
+      SELECT 
+        Zdolnoœci.Zdolnoœæ 
+      FROM 
+        Postaæ 
+      JOIN Bohater 
+      ON 
+        Postaæ.idPostaci = Bohater.idPostaci 
+      JOIN Zdolnoœci 
+      ON 
+        Zdolnoœci.idPostaci = Postaæ.idPostaci 
+    ) 
+  )  
+GO 
+ 
+ 
+ 
+ 
+CREATE VIEW "Dostêpny Pancerz" ( Imiê, Nazwa, idPancerza, "Ochrona korpus", "Ochrona G³owa", "Ochrona lewa rêka", "Ochrona lewa noga", "Ochrona prawa rêka", "Ochrona prawa noga", idPostaci ) AS  
+SELECT 
+  Postaæ.Imiê, 
+  Ekwipunek.Nazwa AS [Nazwa pancerza], 
+  Pancerz.idPancerza, 
+  Pancerz.[Ochrona korpus], 
+  Pancerz.[Ochrona G³owa], 
+  Pancerz.[Ochrona lewa rêka], 
+  Pancerz.[Ochrona lewa noga], 
+  Pancerz.[Ochrona prawa rêka], 
+  Pancerz.[Ochrona prawa noga], 
+  Postaæ.idPostaci 
+FROM 
+  Postaæ 
+INNER JOIN Ekwipunek 
+ON 
+  Postaæ.idPostaci = Ekwipunek.idPostaci 
+INNER JOIN [Typ ekwipunku] 
+ON 
+  [Typ ekwipunku].[idTypu ekwipunku] = Ekwipunek.[idTypu ekwipunku] 
+INNER JOIN Pancerz 
+ON 
+  Ekwipunek.idEkwipunku = Pancerz.idPancerza 
+WHERE 
+  [Typ ekwipunku].Typ LIKE 'Pancerz'  
+GO 
+ 
+ 
+ 
+ 
+CREATE VIEW "Karta postaci"  AS  
+SELECT 
+  Postaæ.Imiê, 
+  Rasa.Rasa, 
+  Postaæ.[Punkty ¿ycia], 
+  Postaæ.[Punkty doœwiadczenia aktualne], 
+  Postaæ.[Punkty doœwiadczenia ogó³em], 
+  Postaæ.[Punkty magii], 
+  Bohater.[Punkty przeznaczenia], 
+  Bohater.[Punkty doœwiadczenia aktualne] AS [Punkty doœwiadczenia aktualne1], 
+  Bohater.[Punkty doœwiadczenia ogó³em]   AS [Punkty doœwiadczenia ogó³em1], 
+  Bohater.[Punkty ob³êdu]                 AS [Punkty ob³êdu], 
+  Klasa.Klasa, 
+  (Statystyki.[Walka wrêcz]+ Statystyki1.[Walka wrêcz]) AS [Walka wrêcz], 
+  (Statystyki.[Umiejêtnoœci strzeleckie]+ Statystyki1.[Umiejêtnoœci strzeleckie])    AS [ Umiejêtnoœci strzeleckie], 
+  (Statystyki.Si³a+ Statystyki1.Si³a)                             AS [ Si³a], 
+  (Statystyki.Wytrzyma³oœæ+ Statystyki1.Wytrzyma³oœæ)             AS [ Wytrzyma³oœæ], 
+  (Statystyki.¯ywotnoœæ+ Statystyki1.¯ywotnoœæ)                   AS [ ¯ywotnoœæ], 
+  (Statystyki.Inicjatywa+ Statystyki1.Inicjatywa)                 AS [ Inicjatywa], 
+  (Statystyki.Ataki+ Statystyki1.Ataki)                             AS [ Ataki], 
+  (Statystyki.Zrêcznoœæ+ Statystyki1.Zrêcznoœæ)                   AS [ Zrêcznoœæ], 
+  (Statystyki.[Cechy przywódcze]+ Statystyki1.[Cechy przywódcze]) AS [ Cechy przywódcze], 
+  (Statystyki.Inteligencja+ Statystyki1.Inteligencja) AS [ Inteligencja], 
+  (Statystyki.Opanowanie+ Statystyki1.Opanowanie)     AS [ Opanowanie], 
+  (Statystyki.[Si³a woli]+ Statystyki1.[Si³a woli])   AS [ Si³a woli], 
+  (Statystyki.Og³ada+ Statystyki1.Og³ada)             AS [ Og³ada] 
+FROM 
+  Postaæ 
+INNER JOIN Bohater 
+ON 
+  Postaæ.idPostaci = Bohater.idPostaci 
+INNER JOIN Rasa 
+ON 
+  Rasa.idRasy = Postaæ.idRasy 
+INNER JOIN Klasa 
+ON 
+  Klasa.idKlasy = Bohater.idKlasy 
+INNER JOIN Statystyki 
+ON 
+  Statystyki.idStatystyk = Postaæ.idStatystyk 
+INNER JOIN Rozwiniêcia 
+ON 
+  Postaæ.idPostaci = Rozwiniêcia.idPostaci 
+INNER JOIN Statystyki Statystyki1 
+ON 
+  Statystyki1.idStatystyk = Rozwiniêcia.idStatystyk  
+GO 
+ 
+ 
+ 
+ 
+CREATE VIEW "Pe³ny opis klasy"  AS  
+SELECT 
+  Klasa.Klasa, 
+  Statystyki.[Walka wrêcz], 
+  Statystyki.[Umiejêtnoœci strzeleckie], 
+  Statystyki.Si³a, 
+  Statystyki.Wytrzyma³oœæ, 
+  Statystyki.¯ywotnoœæ, 
+  Statystyki.Ataki, 
+  Statystyki.Inicjatywa, 
+  Statystyki.Zrêcznoœæ, 
+  Statystyki.[Cechy przywódcze], 
+  Statystyki.Inteligencja, 
+  Statystyki.Opanowanie, 
+  Statystyki.Og³ada, 
+  Statystyki.[Si³a woli], 
+  Umiejêtnoœci.Umiejêtnoœæ, 
+  Zdolnoœci.Zdolnoœæ, 
+  Czar.Nazwa, 
+  Czar.[Punkty magii], 
+  Czar.Sk³adniki, 
+  Czar.Opis 
+FROM 
+  Klasa 
+INNER JOIN Statystyki 
+ON 
+  Statystyki.idStatystyk = Klasa.idStatystyk 
+INNER JOIN Czar 
+ON 
+  Czar.idCzaru = Klasa.idCzaru 
+INNER JOIN Zdolnoœci 
+ON 
+  Klasa.idKlasy = Zdolnoœci.idKlasy 
+INNER JOIN Umiejêtnoœci 
+ON 
+  Klasa.idKlasy = Umiejêtnoœci.idKlasy  
+GO 
+ 
+ 
+ 
+ 
+CREATE VIEW Plecak  AS  
+SELECT 
+  P.Imiê, 
+  EKW.Nazwa, 
+  EKW.Typ, 
+  EKW.Wartoœæ, 
+  EKW.[Czy u¿ywany], 
+  EKW.Iloœæ, 
+  P.idPostaci 
+FROM 
+  Postaæ P 
+JOIN 
+  ( 
+    SELECT 
+      E.idEkwipunku, 
+      TE.Typ, 
+      E.idPostaci, 
+      E.Nazwa, 
+      E.Wartoœæ, 
+      E.[Czy u¿ywany], 
+      E.Iloœæ 
+    FROM 
+      Ekwipunek E 
+    JOIN [Typ ekwipunku] TE 
+    ON 
+      E.[idTypu ekwipunku] = TE.[idTypu ekwipunku] 
+  ) 
+  EKW ON P.idPostaci = EKW.idPostaci  
+GO 
+ 
+ 
+ 
+ 
+CREATE VIEW "Profesje wyjœciowe"  AS  
+SELECT 
+  KW.Klasa 
+FROM 
+  Klasa KB 
+JOIN Klasa KW 
+ON 
+  KB.[idKlasy wyjsciowej] = KW.idKlasy  
+GO 
+ 
+CREATE VIEW "Rozwiniêcia Postaci"  AS  
+SELECT 
+  Postaæ.Imiê, 
+  Klasa.Klasa, 
+  Statystyki1.[Walka wrêcz]              AS [Bazowa walka wrêcz], 
+  Statystyki.[Walka wrêcz]               AS [Wykupione rozwiniêcia walki wrêcz], 
+  Statystyki2.[Walka wrêcz]              AS [Mo¿liwe rozwiniêcia walki wrêcz], 
+  Statystyki1.[Umiejêtnoœci strzeleckie] AS [Bazowa Umiejêtnoœci Strzeleckie], 
+  Statystyki.[Umiejêtnoœci strzeleckie]  AS 
+  [Wykupione rozwiniêcia Umiejêtnoœci Strzeleckie], 
+  Statystyki2.[Umiejêtnoœci strzeleckie] AS 
+  [Mo¿liwe rozwiniêcia Umiejêtnoœci Strzeleckie], 
+  Statystyki1.Si³a               AS [Bazowa Si³a], 
+  Statystyki.Si³a                AS [Wykupione rozwiniêcia Si³a], 
+  Statystyki2.Si³a               AS [Mo¿liwe rozwiniêcia Si³a], 
+  Statystyki1.Wytrzyma³oœæ       AS [Bazowa Wytrzyma³oœæ], 
+  Statystyki.Wytrzyma³oœæ        AS [Wykupione rozwiniêcia Wytrzyma³oœæ], 
+  Statystyki2.Wytrzyma³oœæ       AS [Mo¿liwe rozwiniêcia Wytrzyma³oœæ], 
+  Statystyki1.¯ywotnoœæ          AS [Bazowa ¯ywotnoœæ], 
+  Statystyki.¯ywotnoœæ           AS [Wykupione rozwiniêcia ¯ywotnoœæ], 
+  Statystyki2.¯ywotnoœæ          AS [Mo¿liwe rozwiniêcia ¯ywotnoœæ], 
+  Statystyki1.Inicjatywa         AS [Bazowa Inicjatywa], 
+  Statystyki.Inicjatywa          AS [Wykupione rozwiniêcia Inicjatywa], 
+  Statystyki2.Inicjatywa         AS [Mo¿liwe rozwiniêcia Inicjatywa], 
+  Statystyki1.Ataki              AS [Bazowa Ataki], 
+  Statystyki.Ataki               AS [Wykupione rozwiniêcia Ataki], 
+  Statystyki2.Ataki              AS [Mo¿liwe rozwiniêcia Ataki], 
+  Statystyki1.Zrêcznoœæ          AS [Bazowa Zrêcznoœæ], 
+  Statystyki.Zrêcznoœæ           AS [Wykupione rozwiniêcia Zrêcznoœæ], 
+  Statystyki2.Zrêcznoœæ          AS [Mo¿liwe rozwiniêcia Zrêcznoœæ], 
+  Statystyki1.[Cechy przywódcze] AS [Bazowa Cechy Przywódcze], 
+  Statystyki.[Cechy przywódcze]  AS [Wykupione rozwiniêcia Cechy Przywódcze], 
+  Statystyki2.[Cechy przywódcze] AS [Mo¿liwe rozwiniêcia Cechy Przywódcze], 
+  Statystyki1.Inteligencja       AS [Bazowa Inteligencja], 
+  Statystyki.Inteligencja        AS [Wykupione rozwiniêcia Inteligencja], 
+  Statystyki2.Inteligencja       AS [Mo¿liwe rozwiniêcia Inteligencja], 
+  Statystyki1.Opanowanie         AS [Bazowa Opanowanie], 
+  Statystyki.Opanowanie          AS [Wykupione rozwiniêcia Opanowanie], 
+  Statystyki2.Opanowanie         AS [Mo¿liwe rozwiniêcia Opanowanie], 
+  Statystyki1.[Si³a woli]        AS [Bazowa Si³a Woli], 
+  Statystyki.[Si³a woli]         AS [Wykupione rozwiniêcia Si³a Woli], 
+  Statystyki2.[Si³a woli]        AS [Mo¿liwe rozwiniêcia Si³a Woli], 
+  Statystyki1.Og³ada             AS [Bazowa Og³ada], 
+  Statystyki.Og³ada              AS [Wykupione rozwiniêcia Og³ada], 
+  Statystyki2.Og³ada             AS [Mo¿liwe rozwiniêcia Og³ada], 
+  Postaæ.idPostaci 
+FROM 
+  Postaæ 
+INNER JOIN Bohater 
+ON 
+  Postaæ.idPostaci = Bohater.idPostaci 
+INNER JOIN Rozwiniêcia 
+ON 
+  Postaæ.idPostaci = Rozwiniêcia.idPostaci 
+INNER JOIN Statystyki 
+ON 
+  Statystyki.idStatystyk = Rozwiniêcia.idStatystyk 
+INNER JOIN Statystyki Statystyki1 
+ON 
+  Statystyki1.idStatystyk = Postaæ.idStatystyk 
+INNER JOIN Klasa 
+ON 
+  Klasa.idKlasy = Bohater.idKlasy 
+INNER JOIN Statystyki Statystyki2 
+ON 
+  Statystyki2.idStatystyk = Klasa.idStatystyk  
+GO 
+ 
+ 
+ 
+ 
+CREATE VIEW "Ranking bohaterów"  AS  
+SELECT 
+  Postaæ.idPostaci, 
+  Postaæ.Imiê, 
+  ([Rozwiniêcia Postaci].[Bazowa walka wrêcz]+ [Rozwiniêcia Postaci].[Wykupione rozwiniêcia Walki Wrêcz]) AS [Walka wrêcz], 
+  ([Rozwiniêcia Postaci].[Bazowa Umiejêtnoœci Strzeleckie]+[Rozwiniêcia Postaci].[Wykupione rozwiniêcia Umiejêtnoœci Strzeleckie]) AS [Umiejêtnoœci Strzeleckie], 
+  ([Rozwiniêcia Postaci].[Bazowa Si³a]+ [Rozwiniêcia Postaci].[Wykupione rozwiniêcia Si³a]) AS Si³a, 
+  ([Rozwiniêcia Postaci].[Bazowa Wytrzyma³oœæ]+ [Rozwiniêcia Postaci].[Wykupione rozwiniêcia Wytrzyma³oœæ]) AS Wytrzyma³oœæ, 
+  ([Rozwiniêcia Postaci].[Bazowa ¯ywotnoœæ]+ [Rozwiniêcia Postaci].[Wykupione rozwiniêcia ¯ywotnoœæ]) AS ¯ywotnoœæ, 
+  ([Rozwiniêcia Postaci].[Bazowa Inicjatywa]+ [Rozwiniêcia Postaci].[Wykupione rozwiniêcia Inicjatywa]) AS Inicjatywa, 
+  ([Rozwiniêcia Postaci].[Bazowa Ataki]+ [Rozwiniêcia Postaci].[Wykupione rozwiniêcia Ataki]) AS Ataki, 
+  ([Rozwiniêcia Postaci].[Bazowa Zrêcznoœæ]+ [Rozwiniêcia Postaci].[Wykupione rozwiniêcia Zrêcznoœæ]) AS Zrêcznoœæ, 
+  ([Rozwiniêcia Postaci].[Bazowa Cechy Przywódcze]+ [Rozwiniêcia Postaci].[Wykupione rozwiniêcia Cechy Przywódcze]) AS [Cechy Przywódcze], 
+  ([Rozwiniêcia Postaci].[Bazowa Inteligencja]+ [Rozwiniêcia Postaci].[Wykupione rozwiniêcia Inteligencja]) AS Inteligencja, 
+  ([Rozwiniêcia Postaci].[Bazowa Opanowanie]+ [Rozwiniêcia Postaci].[Wykupione rozwiniêcia Opanowanie]) AS Opanowanie, 
+  ([Rozwiniêcia Postaci].[Bazowa Si³a Woli]+ [Rozwiniêcia Postaci].[Wykupione rozwiniêcia Si³a Woli]) AS [Si³a Woli], 
+  ([Rozwiniêcia Postaci].[Bazowa Og³ada]+ [Rozwiniêcia Postaci].[Wykupione rozwiniêcia Og³ada]) AS Og³ada 
+FROM 
+  Postaæ 
+INNER JOIN Bohater 
+ON 
+  Postaæ.idPostaci = Bohater.idPostaci 
+JOIN [Rozwiniêcia Postaci] 
+ON 
+  [Rozwiniêcia Postaci].idPostaci = Postaæ.idPostaci 
+GO 
+ 
+ 
+ 
+insert into [Typ postaci] values 
+(1,'Bohater'), 
+(2, 'NPC'), 
+(3, 'Wróg') 
+ 
+insert into [Typ ekwipunku] values 
+(1,'Broñ'), 
+(2, 'Pancerz'), 
+(3, 'Zwyk³y') 
+ 
+ 
+go 
+create trigger [blokada typu ekwipunku] 
+on [typ ekwipunku] 
+instead of INSERT, UPDATE  
+AS 
+begin 
+rollback 
+RAISERROR ('odmowa dostêpu', 16, 10); 
+end 
+go 
+ 
+ 
+go 
+CREATE TRIGGER [Blokada typu postaci] 
+ON  [Typ postaci] 
+instead of INSERT, UPDATE  
+AS 
+begin 
+rollback 
+RAISERROR ('odmowa dostêpu', 16, 10); 
+end 
+go 
+ 
+insert into czar values 
+(1, 'kula ognia', 2, 'kulka siarki', 'kula ognia rani 1k4 postaci z si³¹ 0 i zadaje 1k10 obra¿eñ') 
+ 
+ 
+ 
+insert into charakter values 
+(1,'praworz¹dny'), 
+(2, 'dobry'), 
+(3,'neutralny'), 
+(4, 'z³y'), 
+(5,'chaotyczny') 
+ 
+go 
+CREATE TRIGGER [Blokada charakterów] 
+ON  charakter 
+instead of INSERT, UPDATE  
+AS 
+begin 
+rollback 
+RAISERROR ('odmowa dostêpu', 16, 10); 
+end 
+go 
+ 
+insert into rasa values 
+(1, 'Krasnolud'), 
+(2, 'Nizio³ek'), 
+(3, 'Gnom'), 
+(4, 'Cz³owiek'), 
+(5, 'Elf') 
+ 
+go 
+CREATE TRIGGER [Blokada ras] 
+ON  rasa 
+instead of INSERT, UPDATE  
+AS 
+begin 
+rollback 
+RAISERROR ('odmowa dostêpu', 16, 10); 
+end 
+go 
+ 
+ 
+insert into zdolnoœci values 
+(1, 'bardzo silny',null,null), 
+(2, 'bardzo silny',null,null) 
+ 
+insert into Umiejêtnoœci values 
+(1, 'czytanie i pisanie', null, null), 
+(2, 'czytanie i pisanie', null, null) 
+ 
+insert into Statystyki values 
+(1,44,19,4,5,7,8,1,18,52,30,52,50,20), 
+(2, 10, 10, 0,0, 2, 10, 0,10, 20,0,10,0,10)   
+ 
+insert into Postaæ values 
+(1, 1, 'Gimli', 1, 7, 1, 1, 0,0,  1,0, null) 
+ 
+ 
+ insert into Klasa values (1, 'Szlachcic', null,2,2,2, null ) 
+ 
+insert into bohater values (1,4,1,0,0,1,0,null,null) 
+insert into Ob³êd values (1, 'furia'),(2,'klaustrofobia'),(3,'¿ar³ocznoœæ') 
+ 
+ 
+go 
+ create trigger [popadanie w ob³êd] 
+ on bohater 
+ after update 
+ as 
+  IF UPDATE([Punkty ob³êdu])  
+if (select top(1) [punkty ob³êdu] from inserted) > 5 
+if(cast(rand() * 1000000 as int)%100+1 >  (select s.Opanowanie 
+from postaæ p join bohater b on b.idPostaci=p.idPostaci 
+join Statystyki s 
+on p.idStatystyk=s.idStatystyk)) 
+begin 
+update bohater set [punkty ob³êdu]=([punkty ob³êdu]-6)  
+update bohater set idOb³êdu=(cast(rand() * 1000000 as int)%3+1) 
+end 
+  go 
+ 
+ 
+ 
+  update zdolnoœci set idPostaci=1 where idZdolnoœci=1 
+   update zdolnoœci set idKlasy=1 where idZdolnoœci=2   
+     update Umiejêtnoœci set idPostaci=1 where idUmiejêtnoœci=1 
+   update Umiejêtnoœci set idKlasy=1 where idUmiejêtnoœci=2   
